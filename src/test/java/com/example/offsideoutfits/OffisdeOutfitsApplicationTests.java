@@ -1,4 +1,4 @@
-package com.example.offisdeoutfits;
+package com.example.offsideoutfits;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
