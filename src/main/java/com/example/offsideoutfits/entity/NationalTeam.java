@@ -19,7 +19,7 @@ public class NationalTeam {
     @JoinColumn(name = "playerId", referencedColumnName = "playerId")
     private Player player;
 
-    @OneToMany(mappedBy = "nationalTeams")
+    @OneToMany(mappedBy = "nationalTeam")
     private List<TShirt> tShirt;
 
 }

@@ -2,9 +2,11 @@ package com.example.offsideoutfits.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 @Entity
+@ToString
 public class TShirt {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -37,7 +39,7 @@ public class TShirt {
     @JoinColumn(name = "nationalTeamId", referencedColumnName = "nationalTeamId")
     private NationalTeam nationalTeam;
 
-    @ManyToOne(optional = false)
-    private NationalTeam nationalTeams;
+//    @ManyToOne()
+//    private NationalTeam nationalTeams;
 
 }
