@@ -1,10 +1,10 @@
 package com.example.offsideoutfits.repository;
 
-import com.example.offsideoutfits.entity.User;
+import com.example.offsideoutfits.entity.AppUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface AppUserRepository extends JpaRepository<AppUser, Integer> {
     //todo
 }

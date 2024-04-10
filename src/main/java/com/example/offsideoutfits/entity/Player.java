@@ -23,9 +23,9 @@ public class Player {
     @OneToMany(mappedBy = "player")
     private List<Club> clubs;
 
-    // Assuming a one-to-many relationship with NationalTeam
+    // Assuming a one-to-one relationship with NationalTeam
     @OneToOne(mappedBy = "player")
-    private NationalTeam nationalTeams;
+    private NationalTeam nationalTeam;
 
 
 }
