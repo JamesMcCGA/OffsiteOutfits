@@ -25,12 +25,18 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'de.codecentric:spring-boot-admin-starter-client'
 	implementation 'de.codecentric:spring-boot-admin-starter-server'
-	implementation 'org.projectlombok:lombok'
+//	implementation 'org.projectlombok:lombok'
 	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'org.postgresql:postgresql'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
+//	implementation 'org.projectlombok:lombok:1.18.22'
+//	compileOnly 'org.projectlombok:lombok:1.18.22'
+//	annotationProcessor 'org.projectlombok:lombok:1.18.22'
+//	annotationProcessor "org.projectlombok:lombok:1.18.8"
+//	testAnnotationProcessor("org.projectlombok:lombok:1.18.8")
+//	implementation 'name.remal.gradle-plugins.lombok:lombok:2.2.1'
 }
 
 dependencyManagement {
