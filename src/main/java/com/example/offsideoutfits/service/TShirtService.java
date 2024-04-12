@@ -19,4 +19,10 @@ public class TShirtService {
     public List<TShirt> getTShirtsByShopperUsername(String username) {
         return tShirtRepository.findByShopper_Username(username);
     }
+
+    public List<TShirt> getTShirtsByShopperEmail(String email) {
+        return tShirtRepository.findByShopperEmail(email);
+    }
+
+
 }

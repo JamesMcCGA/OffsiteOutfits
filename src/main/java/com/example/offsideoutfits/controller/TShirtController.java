@@ -48,6 +48,12 @@ public class TShirtController {
         return temp;
     }
 
+    @GetMapping("/TShirtsByEmail")
+    public List<TShirt> getTShirtsByShopperEmail(@RequestParam(name="shopperemail") String email) {
+        List<TShirt> temp = tShirtService.getTShirtsByShopperEmail(email);
+        return temp;
+    }
+
     @PostMapping("/TShirts")
     public TShirt addOneTShirt(@RequestBody TShirt tShirt){
 //        System.out.println(tShirt);

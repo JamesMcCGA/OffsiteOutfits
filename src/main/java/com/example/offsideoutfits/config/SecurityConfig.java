@@ -40,6 +40,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/Teams").hasRole("USER")
                         .requestMatchers(HttpMethod.GET, "/TShirts").hasRole("USER")
                         .requestMatchers(HttpMethod.GET, "/TShirtsByUsername").hasRole("USER")
+                        .requestMatchers(HttpMethod.GET, "/TShirtsByEmail").hasRole("USER")
                         .requestMatchers(HttpMethod.GET, "/actuator/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/applications").hasRole("USER")
                         .anyRequest().authenticated())
