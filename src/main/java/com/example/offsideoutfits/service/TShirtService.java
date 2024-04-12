@@ -15,4 +15,8 @@ public class TShirtService {
     public List<TShirt> getTShirtsByShopper(Integer shopperId){
         return tShirtRepository.findByShopperShopperId(shopperId);
     }
+
+    public List<TShirt> getTShirtsByShopperUsername(String username) {
+        return tShirtRepository.findByShopper_Username(username);
+    }
 }

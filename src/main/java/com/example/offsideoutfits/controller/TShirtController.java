@@ -44,7 +44,7 @@ public class TShirtController {
     // /TShirts?shopperusername=testuser
     @GetMapping("/TShirtsByUsername")
     public List<TShirt> getTShirtsByShopperName(@RequestParam(name="shopperusername") String username) {
-        List<TShirt> temp = tShirtRepository.findByShopper_Username(username);
+        List<TShirt> temp = tShirtService.getTShirtsByShopperUsername(username);
         return temp;
     }
 
