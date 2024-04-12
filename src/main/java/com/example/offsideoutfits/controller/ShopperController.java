@@ -1,7 +1,10 @@
 package com.example.offsideoutfits.controller;
 import com.example.offsideoutfits.entity.Shopper;
-import com.example.offsideoutfits.repository.UserRepository;
+import com.example.offsideoutfits.entity.TShirt;
+import com.example.offsideoutfits.repository.ShopperRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,21 +13,22 @@ import java.util.List;
 @RequestMapping("/shoppers")
 public class ShopperController {
     @Autowired
-    private UserRepository userRepository;
+    private ShopperRepository shopperRepository;
 
     @GetMapping
-    public List<Shopper> getAllUsers() {
-        List<Shopper> temp = userRepository.findAll();
-//        System.out.println(temp.get(0).getUsername());
-//        System.out.println(temp);
-//        for (ShopUser user : temp) {
-//            System.out.println("User ID: " + user.getUserId());
-//            System.out.println("Admin Privileges: " + user.getAdminPrivileges());
-//            System.out.println("Email: " + user.getEmail());
-//            System.out.println("Username: " + user.getUsername());
-//            System.out.println(); // Just for spacing between users
-//        }
-        return temp;
+    public ResponseEntity<List<Shopper>> getAllUsers() {
+        List<Shopper> shoppers = shopperRepository.findAll();
+        return new ResponseEntity<>(shoppers, HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<String> addOneShopper(@RequestBody Shopper shopper){
+        Shopper savedShopper = this.shopperRepository.save(shopper);
+        if(savedShopper != null) {
+            return new ResponseEntity<>("Shopper was added successfully", HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>("Failed to add shopper", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 }
