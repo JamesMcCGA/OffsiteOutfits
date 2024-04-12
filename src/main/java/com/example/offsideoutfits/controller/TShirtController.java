@@ -4,13 +4,15 @@ import com.example.offsideoutfits.entity.TShirt;
 import com.example.offsideoutfits.repository.TShirtRepository;
 import com.example.offsideoutfits.service.TShirtService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 public class TShirtController {
+    //although TShirtRepository is an interface, springboot takes care of
+    //creating an implementation / concrete class that it instantiates
+    //thus in this case it looks like you are instantiating an interface but you're actually not
     @Autowired
     private final TShirtRepository tShirtRepository;
 

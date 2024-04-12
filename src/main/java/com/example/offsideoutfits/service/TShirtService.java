@@ -1,28 +1,14 @@
 package com.example.offsideoutfits.service;
 
 import com.example.offsideoutfits.entity.TShirt;
-import com.example.offsideoutfits.repository.TShirtRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class TShirtService {
-    @Autowired
-    private TShirtRepository tShirtRepository;
+public interface TShirtService {
+    List<TShirt> getTShirtsByShopper(Integer shopperId);
 
-    public List<TShirt> getTShirtsByShopper(Integer shopperId){
-        return tShirtRepository.findByShopperShopperId(shopperId);
-    }
+    List<TShirt> getTShirtsByShopperUsername(String username);
 
-    public List<TShirt> getTShirtsByShopperUsername(String username) {
-        return tShirtRepository.findByShopper_Username(username);
-    }
-
-    public List<TShirt> getTShirtsByShopperEmail(String email) {
-        return tShirtRepository.findByShopperEmail(email);
-    }
-
+    List<TShirt> getTShirtsByShopperEmail(String email);
 
 }
