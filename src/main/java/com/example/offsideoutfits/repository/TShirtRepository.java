@@ -11,4 +11,7 @@ public interface TShirtRepository extends JpaRepository<TShirt, Integer> {
     //followed by name of property having @ManyToOne annotation i.e. "shopper"
     //followed by name of primary key of linked entity
     List<TShirt> findByShopperShopperId(Integer shopperId);
+    // _underscore is needed because Username is considered a nested property
+    // whereas ShopperId is not because it is directly associated with the TShirt entity
+    List<TShirt> findByShopper_Username(String username);
 }
