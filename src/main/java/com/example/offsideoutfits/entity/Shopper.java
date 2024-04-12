@@ -13,7 +13,9 @@ import java.util.List;
 @Table(name = "shoppers")
 public class Shopper {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "shopper_seq")
+    @SequenceGenerator(name = "shopper_seq", sequenceName = "shopper_seq", allocationSize = 1)
     private Integer shopperId;
 
     private String username;
@@ -23,8 +25,11 @@ public class Shopper {
     // mappedBy refers to the property name in the class/entity that owns the relationship
     // i.e. the one that is annotated by @JoinColumn
     @OneToMany(mappedBy = "shopper")
-    @JsonManagedReference
+    @JsonManagedReference("tshirt-shopper")
     private List<TShirt> tShirts;
+
+    public Shopper() {
+    }
 
     public Integer getShopperId() {
         return shopperId;

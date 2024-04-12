@@ -13,7 +13,10 @@ import java.util.List;
 //        property = "playerId")
 public class Player {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "player_seq")
+    @SequenceGenerator(name = "player_seq", sequenceName = "player_seq", allocationSize = 1)
+
     private Integer playerId;
 
     private String playerName;
@@ -21,11 +24,11 @@ public class Player {
     // mappedBy refers to the property name in the class/entity that owns the relationship
     // i.e. the one that is annotated by @JoinColumn
     @OneToMany(mappedBy = "player")
-    @JsonManagedReference
+    @JsonManagedReference("tshirt-player")
     private List<TShirt> tShirts;
 
     @OneToMany(mappedBy = "player")
-    @JsonManagedReference
+    @JsonManagedReference("team-player")
     private List<Team> teams;
 
     public Integer getPlayerId() {

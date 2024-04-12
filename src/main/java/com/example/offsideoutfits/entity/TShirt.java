@@ -24,7 +24,7 @@ public class TShirt {
     //it refers to the name of the Java property you want to use as your foreign key
     @ManyToOne
     @JoinColumn(name = "linkedShopper", referencedColumnName = "shopperId")
-    @JsonBackReference
+    @JsonBackReference("tshirt-shopper")
     private Shopper shopper;
 
     private String size;
@@ -39,12 +39,12 @@ public class TShirt {
 
     @ManyToOne
     @JoinColumn(name = "linkedPlayer", referencedColumnName = "playerId")
-    @JsonBackReference
+    @JsonBackReference("tshirt-player")
     private Player player;
 
     @ManyToOne
     @JoinColumn(name = "linkedTeam", referencedColumnName = "TeamId")
-    @JsonBackReference
+    @JsonBackReference("tshirt-team")
     private Team team;
 
 //    @Override

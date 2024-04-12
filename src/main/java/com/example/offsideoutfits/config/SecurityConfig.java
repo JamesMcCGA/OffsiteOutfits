@@ -11,8 +11,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
+import static org.springframework.security.config.Customizer.withDefaults;
+
 @Configuration
-@EnableWebSecurity
+@EnableWebSecurity(debug = true)
 public class SecurityConfig {
 
     @Bean
@@ -26,13 +28,19 @@ public class SecurityConfig {
         return manager;
     }
 
-//    @Bean
-//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//        http
-//                .authorizeRequests()
-//                .dispatcherTypeMatchers(HttpMethod.POST, DispatcherType.valueOf("/TShirts")).hasRole("USER")
-//                .anyRequest().authenticated()
-//                .csrf((csrf)->csrf.disable());
-//        return http.build();
-//    }
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+                .authorizeHttpRequests(authz -> authz
+                        .requestMatchers(HttpMethod.POST, "/shoppers").hasRole("USER")
+                        .requestMatchers(HttpMethod.GET, "/shoppers").hasRole("USER")
+                        .requestMatchers(HttpMethod.GET, "/Players").hasRole("USER")
+                        .requestMatchers(HttpMethod.GET, "/Teams").hasRole("USER")
+                        .requestMatchers(HttpMethod.GET, "/TShirts").hasRole("USER")
+                        .requestMatchers(HttpMethod.GET, "/TShirtsByUsername").hasRole("USER")
+                        .anyRequest().authenticated())
+                .httpBasic(withDefaults())
+                .csrf(csrf -> csrf.disable());
+        return http.build();
+    }
 }

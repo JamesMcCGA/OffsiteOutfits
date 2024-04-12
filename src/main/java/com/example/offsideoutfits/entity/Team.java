@@ -14,18 +14,20 @@ import java.util.List;
 //        property = "teamId")
 public class Team {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "team_seq")
+    @SequenceGenerator(name = "team_seq", sequenceName = "team_seq", allocationSize = 1)
     private Integer TeamId;
 
     private String teamname;
 
     @ManyToOne
     @JoinColumn(name = "linkedPlayer", referencedColumnName = "playerId")
-    @JsonBackReference
+    @JsonBackReference("team-player")
     private Player player;
 
     @OneToMany(mappedBy = "team")
-    @JsonManagedReference
+    @JsonManagedReference("tshirt-team")
     private List<TShirt> tShirt;
 
     public Integer getTeamId() {
