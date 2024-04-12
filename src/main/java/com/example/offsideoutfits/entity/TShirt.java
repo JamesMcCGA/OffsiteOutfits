@@ -1,9 +1,14 @@
 package com.example.offsideoutfits.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
 @Entity
+//@JsonIdentityInfo(
+//        generator = ObjectIdGenerators.PropertyGenerator.class,
+//        property = "tShirtId")
 public class TShirt {
 //    @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
@@ -41,6 +46,22 @@ public class TShirt {
     @JoinColumn(name = "linkedTeam", referencedColumnName = "TeamId")
     @JsonBackReference
     private Team team;
+
+//    @Override
+//    public String toString() {
+//        return "TShirt{" +
+//                "tShirtId=" + tShirtId +
+//                ", shopper=" + shopper +
+//                ", size='" + size + '\'' +
+//                ", year=" + year +
+//                ", kit='" + kit + '\'' +
+//                ", number=" + number +
+//                ", condition='" + condition + '\'' +
+//                ", price=" + price +
+//                ", player=" + player +
+//                ", team=" + team +
+//                '}';
+//    }
 
     public Integer gettShirtId() {
         return tShirtId;
