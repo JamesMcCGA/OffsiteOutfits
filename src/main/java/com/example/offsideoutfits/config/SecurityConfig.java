@@ -32,15 +32,23 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authz -> authz
+                        .requestMatchers(HttpMethod.OPTIONS, "/error").permitAll()
                         .requestMatchers(HttpMethod.POST, "/shoppers").hasRole("USER")
+                        .requestMatchers(HttpMethod.POST, "/instances").hasRole("USER")
                         .requestMatchers(HttpMethod.GET, "/shoppers").hasRole("USER")
                         .requestMatchers(HttpMethod.GET, "/Players").hasRole("USER")
                         .requestMatchers(HttpMethod.GET, "/Teams").hasRole("USER")
                         .requestMatchers(HttpMethod.GET, "/TShirts").hasRole("USER")
                         .requestMatchers(HttpMethod.GET, "/TShirtsByUsername").hasRole("USER")
+                        .requestMatchers(HttpMethod.GET, "/actuator/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/applications").hasRole("USER")
                         .anyRequest().authenticated())
                 .httpBasic(withDefaults())
                 .csrf(csrf -> csrf.disable());
         return http.build();
     }
+
+
+
 }
+

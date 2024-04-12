@@ -37,7 +37,7 @@ dependencies {
 //	annotationProcessor "org.projectlombok:lombok:1.18.8"
 //	testAnnotationProcessor("org.projectlombok:lombok:1.18.8")
 //	implementation 'name.remal.gradle-plugins.lombok:lombok:2.2.1'
-	implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.0-rc1'
+//	implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.0-rc1'
 }
 
 dependencyManagement {
