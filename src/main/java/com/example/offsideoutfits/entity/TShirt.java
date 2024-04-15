@@ -1,5 +1,7 @@
 package com.example.offsideoutfits.entity;
 
+
+
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.ToString;
@@ -12,10 +14,9 @@ public class TShirt {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer tShirtId;
 
-    // Many-to-one relationship with User
     @ManyToOne
-    @JoinColumn(name = "userId", referencedColumnName = "userId")
-    private User user;
+    @JoinColumn(name = "appUserId", referencedColumnName = "appUserId")
+    private AppUser appUser;
 
     private String size;
     private Integer year;
@@ -32,12 +33,20 @@ public class TShirt {
     private Player player;
 
     @ManyToOne
+    @JoinColumn(name = "teamId")
+    private Team team;
+
+    /*
+    @ManyToOne
     @JoinColumn(name = "clubId", referencedColumnName = "clubId")
     private Club club;
 
     @ManyToOne
     @JoinColumn(name = "nationalTeamId", referencedColumnName = "nationalTeamId")
     private NationalTeam nationalTeam;
+
+     */
+
 
 //    @ManyToOne()
 //    private NationalTeam nationalTeams;

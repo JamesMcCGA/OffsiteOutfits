@@ -5,18 +5,18 @@ import lombok.Data;
 
 import java.util.List;
 
-@Data
 @Entity
-public class User {
+public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer userId;
+    private Integer appUserId;
 
+    @OneToMany(mappedBy = "appUser")
+    private List<TShirt> tShirts;
     private String username;
     private String email;
     private Boolean adminPrivileges;
 
-    @OneToMany(mappedBy = "user")
-    private List<TShirt> tShirts;
+
 
 }
