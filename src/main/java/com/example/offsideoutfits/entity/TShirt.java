@@ -3,6 +3,7 @@ package com.example.offsideoutfits.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -16,16 +17,10 @@ public class TShirt {
     @SequenceGenerator(name = "tshirt_seq", sequenceName = "tshirt_seq", allocationSize = 1)
     private Integer tShirtId;
 
-    // Many-to-one relationship with User
-    // This side own the relationship
-    //JoinColumn(name="") specifies the name of the column that will be created in TShirt to hold the foreign key
-    //If you don't specify it, a default name will be generated for you
-    //if referencedColumnName is not specified, it is assumed to be the primary key column of the referenced table
-    //it refers to the name of the Java property you want to use as your foreign key
+
     @ManyToOne
-    @JoinColumn(name = "linkedShopper", referencedColumnName = "shopperId")
-    @JsonBackReference("tshirt-shopper")
-    private Shopper shopper;
+    @JoinColumn(name = "appUserId", referencedColumnName = "appUserId")
+    private AppUser appUser;
 
     private String size;
     private Integer year;
@@ -47,6 +42,7 @@ public class TShirt {
     @JsonBackReference("tshirt-team")
     private Team team;
 
+
 //    @Override
 //    public String toString() {
 //        return "TShirt{" +
@@ -67,16 +63,17 @@ public class TShirt {
         return tShirtId;
     }
 
+
     public void settShirtId(Integer tShirtId) {
         this.tShirtId = tShirtId;
     }
 
-    public Shopper getShopper() {
-        return shopper;
+    public AppUser getShopper() {
+        return appUser;
     }
 
-    public void setShopper(Shopper shopper) {
-        this.shopper = shopper;
+    public void setShopper(AppUser appUser) {
+        this.appUser = appUser;
     }
 
     public String getSize() {

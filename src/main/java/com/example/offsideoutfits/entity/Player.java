@@ -35,6 +35,7 @@ public class Player {
         return playerId;
     }
 
+
     public void setPlayerId(Integer playerId) {
         this.playerId = playerId;
     }
