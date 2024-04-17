@@ -1,31 +1,66 @@
 package com.example.offsideoutfits.entity;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
 
 import java.util.List;
 
-@Data
 @Entity
+//@JsonIdentityInfo(
+//        generator = ObjectIdGenerators.PropertyGenerator.class,
+//        property = "playerId")
 public class Player {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "player_seq")
+    @SequenceGenerator(name = "player_seq", sequenceName = "player_seq", allocationSize = 1)
+
     private Integer playerId;
 
     private String playerName;
 
-    // Assuming a one-to-many relationship with TShirt
+    // mappedBy refers to the property name in the class/entity that owns the relationship
+    // i.e. the one that is annotated by @JoinColumn
     @OneToMany(mappedBy = "player")
+    @JsonManagedReference("tshirt-player")
     private List<TShirt> tShirts;
 
-    // Assuming a one-to-many relationship with Club
     @OneToMany(mappedBy = "player")
-    private List<Club> clubs;
+    @JsonManagedReference("team-player")
+    private List<Team> teams;
 
-    // Assuming a one-to-one relationship with NationalTeam
-    @OneToOne(mappedBy = "player")
-    private NationalTeam nationalTeam;
+    public Integer getPlayerId() {
+        return playerId;
+    }
 
 
+    public void setPlayerId(Integer playerId) {
+        this.playerId = playerId;
+    }
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
+
+    public List<TShirt> gettShirts() {
+        return tShirts;
+    }
+
+    public void settShirts(List<TShirt> tShirts) {
+        this.tShirts = tShirts;
+    }
+
+    public List<Team> getTeams() {
+        return teams;
+    }
+
+    public void setTeams(List<Team> teams) {
+        this.teams = teams;
+    }
 }
