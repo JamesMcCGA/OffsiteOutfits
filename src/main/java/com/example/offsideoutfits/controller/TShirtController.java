@@ -15,52 +15,35 @@ public class TShirtController {
     //thus in this case it looks like you are instantiating an interface but you're actually not
     @Autowired
     private final TShirtRepository tShirtRepository;
-
     @Autowired
     private final TShirtService tShirtService;
-
     public TShirtController(TShirtRepository tShirtRepository, TShirtService tShirtService) {
         this.tShirtRepository = tShirtRepository;
         this.tShirtService = tShirtService;
     }
-
-//    @GetMapping("/TShirts")
-//    public Iterable<TShirt> findAllTShirts(){
-//        return this.tShirtRepository.findAll();
-//    }
-
     @GetMapping("/TShirts")
     public List<TShirt> getAllTshirts() {
         List<TShirt> temp = tShirtRepository.findAll();
-//        System.out.println(temp);
         return temp;
     }
 
     @GetMapping("/TShirts/{id}")
-    public List<TShirt> getTShirtsByShopper(@PathVariable Integer id){
-//        List<TShirt> temp = tShirtRepository.findByShopperShopperId(id);
-        List<TShirt> temp = tShirtService.getTShirtsByShopper(id);
+    public List<TShirt> getTShirtsByAppUser(@PathVariable Integer id){
+        List<TShirt> temp = tShirtService.getTShirtsByAppUser(id);
         return temp;
     }
-
-    // /TShirts?shopperusername=testuser
     @GetMapping("/TShirtsByUsername")
-    public List<TShirt> getTShirtsByShopperName(@RequestParam(name="shopperusername") String username) {
-        List<TShirt> temp = tShirtService.getTShirtsByShopperUsername(username);
+    public List<TShirt> getTShirtsByAppUserName(@RequestParam(name="appUserusername") String username) {
+        List<TShirt> temp = tShirtService.getTShirtsByAppUserUsername(username);
         return temp;
     }
-
     @GetMapping("/TShirtsByEmail")
-    public List<TShirt> getTShirtsByShopperEmail(@RequestParam(name="shopperemail") String email) {
-        List<TShirt> temp = tShirtService.getTShirtsByShopperEmail(email);
+    public List<TShirt> getTShirtsByAppUserEmail(@RequestParam(name="appUseremail") String email) {
+        List<TShirt> temp = tShirtService.getTShirtsByAppUserEmail(email);
         return temp;
     }
-
     @PostMapping("/TShirts")
     public TShirt addOneTShirt(@RequestBody TShirt tShirt){
-//        System.out.println(tShirt);
         return this.tShirtRepository.save(tShirt);
     }
-
-
 }

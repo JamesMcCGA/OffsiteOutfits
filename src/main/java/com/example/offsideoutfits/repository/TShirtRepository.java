@@ -9,24 +9,18 @@ import java.util.List;
 
 public interface TShirtRepository extends JpaRepository<TShirt, Integer> {
     //Apparently method name needs to be "findBy"
-    //followed by name of property having @ManyToOne annotation i.e. "shopper"
+    //followed by name of property having @ManyToOne annotation i.e. "appUser"
     //followed by name of primary key of linked entity
-    List<TShirt> findByShopperShopperId(Integer shopperId);
+    List<TShirt> findByAppUserAppUserId(Integer appUserId);
 
     // _underscore is needed because Username is considered a nested property
-    // whereas ShopperId is not because it is directly associated with the TShirt entity
-    List<TShirt> findByShopper_Username(String username);
-
-//    @Query(
-//            value = "SELECT T.* FROM T_Shirt AS T INNER JOIN Shopper AS S ON T.User = S.Shopper_Id WHERE S.email = 'particular_email@example.com'", nativeQuery = true)
-//    List<TShirt> findByShopperEmail(String email);
-
+    // whereas AppUserId is not because it is directly associated with the TShirt entity
+    List<TShirt> findByAppUser_Username(String username);
     @Query(
             value = "SELECT T.* " +
                     "FROM tshirt AS T " +
-                    "INNER JOIN shoppers AS S ON T.linked_shopper = S.shopper_id " +
+                    "INNER JOIN appUsers AS S ON T.linked_appUser = S.appUser_id " +
                     "WHERE S.email = :email",
             nativeQuery = true)
-    List<TShirt> findByShopperEmail(String email);
-
+    List<TShirt> findByAppUserEmail(String email);
 }

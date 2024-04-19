@@ -9,16 +9,12 @@ import jakarta.persistence.*;
 
 import java.util.List;
 
-//@JsonIdentityInfo(
-//        generator = ObjectIdGenerators.PropertyGenerator.class,
-//        property = "teamId")
+@Entity
 public class Team {
     @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "team_seq")
     @SequenceGenerator(name = "team_seq", sequenceName = "team_seq", allocationSize = 1)
     private Integer TeamId;
-
     private String teamname;
 
     @ManyToOne
@@ -33,31 +29,24 @@ public class Team {
     public Integer getTeamId() {
         return TeamId;
     }
-
     public void setTeamId(Integer teamId) {
         TeamId = teamId;
     }
-
     public String getTeamname() {
         return teamname;
     }
-
     public void setTeamname(String teamname) {
         this.teamname = teamname;
     }
-
     public Player getPlayer() {
         return player;
     }
-
     public void setPlayer(Player player) {
         this.player = player;
     }
-
     public List<TShirt> gettShirt() {
         return tShirt;
     }
-
     public void settShirt(List<TShirt> tShirt) {
         this.tShirt = tShirt;
     }

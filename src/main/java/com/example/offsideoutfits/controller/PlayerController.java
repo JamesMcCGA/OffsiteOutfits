@@ -16,16 +16,9 @@ import java.util.List;
 public class PlayerController {
     @Autowired
     private final PlayerRepository playerRepository;
-
     public PlayerController(PlayerRepository playerRepository) {
         this.playerRepository = playerRepository;
     }
-
-//    @GetMapping("/TShirts")
-//    public Iterable<TShirt> findAllTShirts(){
-//        return this.tShirtRepository.findAll();
-//    }
-
     @GetMapping("/Players")
     public List<Player> getAllPlayers() {
         List<Player> temp = playerRepository.findAll();
@@ -37,6 +30,4 @@ public class PlayerController {
     public Player addOnePLayer(@RequestBody Player player){
         return this.playerRepository.save(player);
     }
-
-
 }
