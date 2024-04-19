@@ -5,10 +5,10 @@ import com.example.offsideoutfits.entity.TShirt;
 import java.util.List;
 
 public interface TShirtService {
-    List<TShirt> getTShirtsByShopper(Integer shopperId);
+    List<TShirt> getTShirtsByAppUser(Integer appUserId);
 
-    List<TShirt> getTShirtsByShopperUsername(String username);
+    List<TShirt> getTShirtsByAppUserUsername(String username);
 
-    List<TShirt> getTShirtsByShopperEmail(String email);
+    List<TShirt> getTShirtsByAppUserEmail(String email);
 
 }
