@@ -16,11 +16,6 @@ public interface TShirtRepository extends JpaRepository<TShirt, Integer> {
     // _underscore is needed because Username is considered a nested property
     // whereas AppUserId is not because it is directly associated with the TShirt entity
     List<TShirt> findByAppUser_Username(String username);
-
-//    @Query(
-//            value = "SELECT T.* FROM T_Shirt AS T INNER JOIN AppUser AS S ON T.User = S.AppUser_Id WHERE S.email = 'particular_email@example.com'", nativeQuery = true)
-//    List<TShirt> findByAppUserEmail(String email);
-
     @Query(
             value = "SELECT T.* " +
                     "FROM tshirt AS T " +
@@ -28,5 +23,4 @@ public interface TShirtRepository extends JpaRepository<TShirt, Integer> {
                     "WHERE S.email = :email",
             nativeQuery = true)
     List<TShirt> findByAppUserEmail(String email);
-
 }

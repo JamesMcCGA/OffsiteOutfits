@@ -24,6 +24,4 @@ public class TShirtServiceImpl implements TShirtService {
     public List<TShirt> getTShirtsByAppUserEmail(String email) {
         return tShirtRepository.findByAppUserEmail(email);
     }
-
-
 }

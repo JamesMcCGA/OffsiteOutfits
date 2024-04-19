@@ -6,9 +6,7 @@ import java.util.List;
 
 public interface TShirtService {
     List<TShirt> getTShirtsByAppUser(Integer appUserId);
-
     List<TShirt> getTShirtsByAppUserUsername(String username);
-
     List<TShirt> getTShirtsByAppUserEmail(String email);
 
 }

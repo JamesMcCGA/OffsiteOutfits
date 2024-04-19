@@ -6,8 +6,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class PopulationScript {
     private final TShirtRepository tShirtRepository;
-
-
     public PopulationScript(TShirtRepository tShirtRepository) {
         this.tShirtRepository = tShirtRepository;
     }

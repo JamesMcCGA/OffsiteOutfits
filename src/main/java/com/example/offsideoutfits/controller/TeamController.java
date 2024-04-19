@@ -16,27 +16,16 @@ import java.util.List;
 public class TeamController {
     @Autowired
     private final TeamRepository teamRepository;
-
     public TeamController(TeamRepository teamRepository) {
         this.teamRepository = teamRepository;
     }
-
-//    @GetMapping("/TShirts")
-//    public Iterable<TShirt> findAllTShirts(){
-//        return this.tShirtRepository.findAll();
-//    }
-
     @GetMapping("/Teams")
     public List<Team> getAllTeams() {
         List<Team> temp = teamRepository.findAll();
-//        System.out.println(temp);
         return temp;
     }
-
     @PostMapping("/Teams")
     public Team addOneTeam(@RequestBody Team team){
         return this.teamRepository.save(team);
     }
-
-
 }
