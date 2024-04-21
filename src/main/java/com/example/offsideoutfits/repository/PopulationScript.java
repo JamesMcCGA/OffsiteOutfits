@@ -53,6 +53,7 @@ public class PopulationScript {
         tShirtRepository.deleteAll();
         appUserRepository.deleteAll();
         teamRepository.deleteAll();
+        playerRepository.deleteAll();
 
 
     }
