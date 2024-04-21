@@ -13,6 +13,11 @@ public class TShirtServiceImpl implements TShirtService {
     @Autowired
     private TShirtRepository tShirtRepository;
 
+    @Override
+    public List<TShirt> getAllTShirts() {
+        return tShirtRepository.findAll();
+    }
+
     public List<TShirt> getTShirtsByAppUser(Integer appUserId){
         return tShirtRepository.findByAppUserAppUserId(appUserId);
     }

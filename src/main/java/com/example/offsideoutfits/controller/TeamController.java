@@ -1,9 +1,8 @@
 package com.example.offsideoutfits.controller;
 
-import com.example.offsideoutfits.entity.Player;
 import com.example.offsideoutfits.entity.Team;
-import com.example.offsideoutfits.repository.PlayerRepository;
 import com.example.offsideoutfits.repository.TeamRepository;
+import com.example.offsideoutfits.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,12 +15,15 @@ import java.util.List;
 public class TeamController {
     @Autowired
     private final TeamRepository teamRepository;
-    public TeamController(TeamRepository teamRepository) {
+    @Autowired
+    private final TeamService teamService;
+    public TeamController(TeamRepository teamRepository, TeamService teamService) {
         this.teamRepository = teamRepository;
+        this.teamService = teamService;
     }
     @GetMapping("/Teams")
     public List<Team> getAllTeams() {
-        List<Team> temp = teamRepository.findAll();
+        List<Team> temp = teamService.getAllTeams();
         return temp;
     }
     @PostMapping("/Teams")

@@ -23,7 +23,7 @@ public class TShirtController {
     }
     @GetMapping("/TShirts")
     public List<TShirt> getAllTshirts() {
-        List<TShirt> temp = tShirtRepository.findAll();
+        List<TShirt> temp = tShirtService.getAllTShirts();
         return temp;
     }
 

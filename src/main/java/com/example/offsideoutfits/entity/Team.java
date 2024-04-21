@@ -1,9 +1,6 @@
 package com.example.offsideoutfits.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
 
@@ -17,10 +14,11 @@ public class Team {
     private Integer TeamId;
     private String teamname;
 
-    @ManyToOne
-    @JoinColumn(name = "linkedPlayer", referencedColumnName = "playerId")
-    @JsonBackReference("team-player")
-    private Player player;
+    @ManyToMany
+    @JoinTable(name = "team_player",
+            joinColumns = @JoinColumn(name = "team_id"),
+            inverseJoinColumns = @JoinColumn(name = "player_id"))
+    private List<Player> players;
 
     @OneToMany(mappedBy = "team")
     @JsonManagedReference("tshirt-team")
@@ -38,11 +36,11 @@ public class Team {
     public void setTeamname(String teamname) {
         this.teamname = teamname;
     }
-    public Player getPlayer() {
-        return player;
+    public List<Player> getPlayers() {
+        return players;
     }
-    public void setPlayer(Player player) {
-        this.player = player;
+    public void setPlayers(List<Player> players) {
+        this.players = players;
     }
     public List<TShirt> gettShirt() {
         return tShirt;
