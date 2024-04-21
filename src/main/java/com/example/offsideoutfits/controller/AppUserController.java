@@ -1,20 +1,28 @@
 package com.example.offsideoutfits.controller;
 import com.example.offsideoutfits.entity.AppUser;
 import com.example.offsideoutfits.repository.AppUserRepository;
+import com.example.offsideoutfits.service.AppUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/appusers")
 public class AppUserController {
-    @Autowired
-    private AppUserRepository appUserRepository;
 
+    @Autowired
+    private final AppUserService appUserService;
+    @Autowired
+    private final AppUserRepository appUserRepository;
+    public AppUserController(AppUserService appUserService, AppUserRepository appUserRepository){
+        this.appUserService = appUserService;
+        this.appUserRepository = appUserRepository;
+    }
+
+    @RequestMapping("/appusers")
     @GetMapping
     public List<AppUser> getAllAppUsers() {
-        return appUserRepository.findAll();
+        return appUserService.getAllAppUsers();
     }
 
     // Other endpoints for creating, updating, and deleting users todo
