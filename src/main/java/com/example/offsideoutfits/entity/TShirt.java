@@ -16,6 +16,7 @@ public class TShirt {
 
     @ManyToOne
     @JoinColumn(name = "appUserId", referencedColumnName = "appUserId")
+    @JsonBackReference("tshirt-appUser")
     private AppUser appUser;
     private String size;
     private Integer year;
@@ -31,22 +32,8 @@ public class TShirt {
     @JoinColumn(name = "linkedTeam", referencedColumnName = "TeamId")
     @JsonBackReference("tshirt-team")
     private Team team;
+
     
-//    @Override
-//    public String toString() {
-//        return "TShirt{" +
-//                "tShirtId=" + tShirtId +
-//                ", appUser=" + appUser +
-//                ", size='" + size + '\'' +
-//                ", year=" + year +
-//                ", kit='" + kit + '\'' +
-//                ", number=" + number +
-//                ", condition='" + condition + '\'' +
-//                ", price=" + price +
-//                ", player=" + player +
-//                ", team=" + team +
-//                '}';
-//    }
 
     public Integer gettShirtId() {
         return tShirtId;
