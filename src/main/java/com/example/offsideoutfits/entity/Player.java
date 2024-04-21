@@ -22,8 +22,8 @@ public class Player {
     @JsonManagedReference("tshirt-player")
     private List<TShirt> tShirts;
 
-    @OneToMany(mappedBy = "player")
     @JsonManagedReference("team-player")
+    @ManyToMany(mappedBy = "players")
     private List<Team> teams;
 
     public Integer getPlayerId() {
