@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>T-Shirts</title>
+</head>
+<body>
+<h1>T-Shirts</h1>
+<ul>
+    <li th:each="tShirt : ${tShirts}">
+        <span th:text="${tShirt.size}"></span>,
+        <span th:text="${tShirt.kit}"></span>
+        <!-- Add more fields as needed -->
+    </li>
+</ul>
+</body>
+</html>

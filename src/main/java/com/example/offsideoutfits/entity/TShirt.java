@@ -2,11 +2,15 @@ package com.example.offsideoutfits.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.*;
 
 @Entity
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "tShirtId")
 public class TShirt {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tshirt_seq")
@@ -16,6 +20,7 @@ public class TShirt {
 
     @ManyToOne
     @JoinColumn(name = "appUserId", referencedColumnName = "appUserId")
+//    @JsonBackReference("tshirt-appUser")
     private AppUser appUser;
     private String size;
     private Integer year;
@@ -31,22 +36,8 @@ public class TShirt {
     @JoinColumn(name = "linkedTeam", referencedColumnName = "TeamId")
     @JsonBackReference("tshirt-team")
     private Team team;
+
     
-//    @Override
-//    public String toString() {
-//        return "TShirt{" +
-//                "tShirtId=" + tShirtId +
-//                ", appUser=" + appUser +
-//                ", size='" + size + '\'' +
-//                ", year=" + year +
-//                ", kit='" + kit + '\'' +
-//                ", number=" + number +
-//                ", condition='" + condition + '\'' +
-//                ", price=" + price +
-//                ", player=" + player +
-//                ", team=" + team +
-//                '}';
-//    }
 
     public Integer gettShirtId() {
         return tShirtId;

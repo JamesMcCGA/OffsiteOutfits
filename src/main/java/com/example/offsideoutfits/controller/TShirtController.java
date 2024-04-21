@@ -46,4 +46,9 @@ public class TShirtController {
     public TShirt addOneTShirt(@RequestBody TShirt tShirt){
         return this.tShirtRepository.save(tShirt);
     }
+
+    @PutMapping("/TShirts/{tShirtId}/{userId}")
+    public TShirt updateTShirt(@PathVariable Integer tShirtId, @PathVariable Integer userId) {
+        return tShirtService.updateTShirt(tShirtId, userId);
+    }
 }
