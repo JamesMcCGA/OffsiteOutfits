@@ -16,6 +16,8 @@ The user can then view their cart, which will have all the T shirts they have ad
 This corresponds to the data in the database:
 ![db](src/main/resources/db.png "db")
 
+N.B. Our frontend code can be found at the following github repository:
+https://github.com/isym444/offsideoutfitsfrontend
 
 ## Architecture:
 ### Technology Overview
