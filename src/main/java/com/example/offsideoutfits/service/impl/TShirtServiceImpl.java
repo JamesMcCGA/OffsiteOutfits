@@ -14,13 +14,10 @@ import java.util.stream.Collectors;
 
 @Service
 public class TShirtServiceImpl implements TShirtService {
-
     @Autowired
     private TShirtRepository tShirtRepository;
-
     @Autowired
     private AppUserRepository appUserRepository;
-
     private TShirtDTO convertToDTO(TShirt tShirt) {
         TShirtDTO dto = new TShirtDTO();
         dto.settShirtId(tShirt.gettShirtId());
@@ -30,24 +27,14 @@ public class TShirtServiceImpl implements TShirtService {
         dto.setKit(tShirt.getKit());
         dto.setNumber(tShirt.getNumber());
         dto.setCondition(tShirt.getCondition());
-        // Set more properties
 
-        // Set AppUser information
         if (tShirt.getAppUser() != null) {
-//            System.out.println("Has an associated app user !!!!!!!!!!!!!");
             dto.setAppUserUsername(tShirt.getAppUser().getUsername());
             dto.setAppUserId(tShirt.getAppUser().getAppUserId());
-            // Set other AppUser properties as needed
         }
 
         return dto;
     }
-
-//    @Override
-//    public List<TShirt> getAllTShirts() {
-//        return tShirtRepository.findAll();
-//    }
-
     @Override
     public List<TShirtDTO> getAllTShirts() {
         List<TShirt> tShirts = tShirtRepository.findAll();
@@ -55,19 +42,15 @@ public class TShirtServiceImpl implements TShirtService {
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());
     }
-
     public List<TShirt> getTShirtsByAppUser(Integer appUserId){
         return tShirtRepository.findByAppUserAppUserId(appUserId);
     }
-
     public List<TShirt> getTShirtsByAppUserUsername(String username) {
         return tShirtRepository.findByAppUser_Username(username);
     }
-
     public List<TShirt> getTShirtsByAppUserEmail(String email) {
         return tShirtRepository.findByAppUserEmail(email);
     }
-
     @Override
     public TShirt updateTShirt(Integer tShirtId, Integer userId) {
         AppUser appUser = appUserRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));

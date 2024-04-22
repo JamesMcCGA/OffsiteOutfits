@@ -7,7 +7,15 @@ OffsideOutfits is an online retailer for authentic retro football shirts. It off
 
 With the functionality as it stands, it presents a user with a selection of available T shirts via a get request to our backend. The user can then select one of the T-shirts to add to their cart. This triggers a put request, resulting in association of the user with that T shirt. 
 
+![dashboard](src/main/resources/dashboard.png "dashboard")
+
 The user can then view their cart, which will have all the T shirts they have added/associated with them.
+
+![cart](src/main/resources/cart.png "cart")
+
+This corresponds to the data in the database:
+![db](src/main/resources/db.png "db")
+
 
 ## Architecture:
 ### Technology Overview
@@ -18,15 +26,18 @@ For further organisation/devops, we are using:
 - Jira for project management 
 - Teams for communication 
 
-### Technical Speccifics
+### Technical Specifics
 The HTML/JS frontend consumes endpoints configured by the Springboot back-end, which return JSON response, and manipulates them according to the webpage’s needs. There are several endpoints constructed to serve individual purposes, therefore removing the necessity for too much data filtering on the front end.
 
 The backend communicates with a postgresql database, which is deployed on a custom VPS server, located in Germany, which is running Ubuntu.
 
+![VPS](src/main/resources/VPS.png "VPS")
+
+
 ### Entities
 Our entities together with their attributes and relationships are detailed in the ER diagram below:
 
-![Alt text](src/main/resources/erd.png "ER diagram")
+![ER diagram](src/main/resources/erd.png "ER diagram")
 
 ### Endpoints by resource 
 For each resource (Player, T-shirt, Team), we have several endpoints. To list them:
@@ -54,19 +65,41 @@ Both player and team have two endpoints to serve the following purposes:
 
 ## Examples of classes with clean/refactored code:
 
-### Example 1: 
+### Example 1:
+src/main/java/com/example/offsideoutfits/controller/TShirtController.java
 
-### Example 2: 
+Screenshot:
+![cleancode1](src/main/resources/cleancode1.png "cleancode1")
+
+### Example 2:
+src/main/java/com/example/offsideoutfits/service/impl/TShirtServiceImpl.java
+
+Screenshot:
+![cleancode2](src/main/resources/cleancode2.png "cleancode2")
 
 ## Doubling
 
+## Backend:
+
 ### Testing mock:
+For the backend, our key functionality revolved around the TShirt entity. As such, we have provided a mock and stub to test this. The path to the code for this can be found at: java/com/example/offsideoutfits/TShirtServiceTest.java
+
+We first Mocked the TShirtRepository by using the @Mock mockito annotation. We then provided this to our instance of TShirtServiceImpl by using the @InjectMocks annotation. This ensured that our tShirtService would not actually make a call to our database.
+
+For this short explanation, we would like to bring your attention to testGetTShirtsByAppUser within which we have implemented stubs within the context of our mock:
 
 ### Testing stub:
+Within testGetTShirtsByAppUser, we create a stub of the findAppByUserId method within the tShirtRepository. We do this by using the Mockito library Mockito.anyInt() method such that no matter what integer is passed into the function as an argument, it returns "expectedTShirts". "expectedTShirts" is in turn a manually declared variable, which is initialized to a list of 2 manually created TShirt() objects.
 
+As such, when the tShirtService.getTshirtsByAppUser(1) method is called, we can then verify (a Junit library method) whether our mocked tShirtRepository findByAppUserAppUserId method is called once as well as asserting whether the return value of our tShirtService method call is the same as our "expectedTShirts".
 
-Mocks and Stubs for Frontend
-For the frontend we used HTML,CSS and JavaScript. Due to this we have used a testing framework called Jest which is specifically a Javascript testing framework. The link to the test file:https://github.com/isym444/offsideoutfitsfrontend/pull/2/commits/3e57816689671fca800386db1e67ad3ac0323cf2. In this test file you can see a demonstration of a Mock and a Stub for the frontend components.
+Image of test method for easy reference:
+![Mock](src/main/resources/mock.png "mock")
+
+##  Frontend
+For the frontend we used HTML,CSS and JavaScript. Due to this we have used a testing framework called Jest which is specifically a Javascript testing framework. The link to the test: file:https://github.com/isym444/offsideoutfitsfrontend/pull/2/commits/3e57816689671fca800386db1e67ad3ac0323cf2. 
+
+In this test file you can see a demonstration of a Mock and a Stub for the frontend components.
 Mock Brief Description (frontend)
 This test validates that when a T-shirt is already present in the cart array and the addToCart function is invoked with the same T-shirt ID, it correctly prevents the addition of a duplicate. It imitates such a scenario by first placing a mock T-shirt into the cart array. Then, it calls the addToCart function with the same T-shirt ID again. The expectation is that the cart array remains unchanged, ensuring that duplicate items are not added, therefore adhering to the desired behavior of the function.
 Stub Brief Description (frontend)

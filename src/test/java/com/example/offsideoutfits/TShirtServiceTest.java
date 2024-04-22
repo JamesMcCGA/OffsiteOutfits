@@ -36,14 +36,10 @@ public class TShirtServiceTest {
         dto.setKit(tShirt.getKit());
         dto.setNumber(tShirt.getNumber());
         dto.setCondition(tShirt.getCondition());
-        // Set more properties
 
-        // Set AppUser information
         if (tShirt.getAppUser() != null) {
-//            System.out.println("Has an associated app user !!!!!!!!!!!!!");
             dto.setAppUserUsername(tShirt.getAppUser().getUsername());
             dto.setAppUserId(tShirt.getAppUser().getAppUserId());
-            // Set other AppUser properties as needed
         }
 
         return dto;
@@ -59,7 +55,6 @@ public class TShirtServiceTest {
 
         List<TShirtDTO> actualTShirts = tShirtService.getAllTShirts();
 
-        // Assert
         verify(tShirtRepository, times(1)).findAll();
         assertEquals(expectedTShirts2.getClass().getTypeName(), actualTShirts.getClass().getTypeName());
     }
@@ -71,7 +66,6 @@ public class TShirtServiceTest {
 
         List<TShirt> actualTShirts = tShirtService.getTShirtsByAppUser(1);
 
-        // Assert
         verify(tShirtRepository, times(1)).findByAppUserAppUserId(Mockito.anyInt());
         assertEquals(expectedTShirts, actualTShirts);
     }
