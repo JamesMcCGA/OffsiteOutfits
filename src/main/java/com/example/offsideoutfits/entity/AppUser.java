@@ -9,16 +9,16 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.List;
 
 @Entity
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "appUserId")
+//@JsonIdentityInfo(
+//        generator = ObjectIdGenerators.PropertyGenerator.class,
+//        property = "appUserId")
 public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @SequenceGenerator(name = "appuser_seq", sequenceName = "appuser_seq", allocationSize = 1)
     private Integer appUserId;
     @OneToMany(mappedBy = "appUser")
-//    @JsonManagedReference("tshirt-appUser")
+    @JsonManagedReference("tshirt-appUser")
     private List<TShirt> tShirts;
     private String username;
     private String email;

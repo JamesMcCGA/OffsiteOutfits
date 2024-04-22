@@ -1,4 +1,5 @@
 package com.example.offsideoutfits.controller;
+import com.example.offsideoutfits.DTOs.AppUserDTO;
 import com.example.offsideoutfits.entity.AppUser;
 import com.example.offsideoutfits.repository.AppUserRepository;
 import com.example.offsideoutfits.service.AppUserService;
@@ -21,7 +22,7 @@ public class AppUserController {
 
     @RequestMapping("/appusers")
     @GetMapping
-    public List<AppUser> getAllAppUsers() {
+    public List<AppUserDTO> getAllAppUsers() {
         return appUserService.getAllAppUsers();
     }
 
