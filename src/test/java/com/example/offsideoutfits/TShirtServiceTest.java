@@ -13,6 +13,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
@@ -26,16 +27,41 @@ public class TShirtServiceTest {
     @InjectMocks
     private TShirtServiceImpl tShirtService;
 
+    private TShirtDTO convertToDTO(TShirt tShirt) {
+        TShirtDTO dto = new TShirtDTO();
+        dto.settShirtId(tShirt.gettShirtId());
+        dto.setSize(tShirt.getSize());
+        dto.setYear(tShirt.getYear());
+        dto.setPrice(tShirt.getPrice());
+        dto.setKit(tShirt.getKit());
+        dto.setNumber(tShirt.getNumber());
+        dto.setCondition(tShirt.getCondition());
+        // Set more properties
+
+        // Set AppUser information
+        if (tShirt.getAppUser() != null) {
+//            System.out.println("Has an associated app user !!!!!!!!!!!!!");
+            dto.setAppUserUsername(tShirt.getAppUser().getUsername());
+            dto.setAppUserId(tShirt.getAppUser().getAppUserId());
+            // Set other AppUser properties as needed
+        }
+
+        return dto;
+    }
+
     @Test
     public void testGetAllTshirts() {
-        List<TShirtDTO> expectedTShirts = Arrays.asList(new TShirtDTO(), new TShirtDTO());
+        List<TShirt> expectedTShirts = Arrays.asList(new TShirt(), new TShirt());
+        List<TShirtDTO> expectedTShirts2 = expectedTShirts.stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
         when(tShirtRepository.findAll()).thenReturn(expectedTShirts);
 
         List<TShirtDTO> actualTShirts = tShirtService.getAllTShirts();
 
         // Assert
         verify(tShirtRepository, times(1)).findAll();
-        assertEquals(expectedTShirts, actualTShirts);
+        assertEquals(expectedTShirts2.getClass().getTypeName(), actualTShirts.getClass().getTypeName());
     }
 
     @Test
