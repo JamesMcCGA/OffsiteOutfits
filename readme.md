@@ -107,6 +107,9 @@ This test validates that when a T-shirt is already present in the cart array and
 Stub Brief Description (frontend)
 This test proves that when invoking the addToCart method with a specific T-shirt ID, it successfully adds that T-shirt to the cart if it isn't already present. It creates a situation where the tShirts.find method is stubbed to return the selected T-shirt, and the cart.some method is stubbed to return false to indicate that the T-shirt is not already in the cart. We also mock the alert function to mimicking its behavior. After invoking the addToCart function with the T-shirt ID, we check whether the T-shirt is indeed added to the cart array and that the expected alert message is executed.
 
+## Code Coverage
+Please find below our code coverage statistics
+![coverage](src/main/resources/coverage.png "coverage")
 
 
 # Retrospective - Held on 18/04/2024
@@ -140,3 +143,11 @@ This test proves that when invoking the addToCart method with a specific T-shirt
 - By the end of the project we should feel like each developer has contributed an equal amount of time.
 - A good, seamless user experience on the frontend
 
+## Appendix A: How to run the app
+In order to run the app, please clone master branches of both backend and frontend (see submission for links to both).
+
+For the backend, please open the repository in intellij. You will then have to set your run configuration environment variables. To see what the configuration should be please see the submission for details (we are not posting it here so we do not expose our credentials to the world).
+
+For the frontend, please open repo in vscode and install the live server extension. Having done so, you can now run the live server for the index.html file on the default port provided by this extension (5500). The frontend will open in a new tab of your default browser. 
+
+At this point, you should now be able to operate the whole app via the frontend.
