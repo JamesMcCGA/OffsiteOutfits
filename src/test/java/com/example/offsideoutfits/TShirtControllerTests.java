@@ -1,5 +1,6 @@
 package com.example.offsideoutfits;
 
+import com.example.offsideoutfits.DTOs.TShirtDTO;
 import com.example.offsideoutfits.controller.TShirtController;
 import com.example.offsideoutfits.entity.TShirt;
 import com.example.offsideoutfits.repository.TShirtRepository;
@@ -42,24 +43,25 @@ public class TShirtControllerTests {
     @InjectMocks
     private TShirtController tShirtController;
 
-    private List<TShirt> mockList;
+    private List<TShirtDTO> mockList;
+    private List<TShirt> oldmockList;
 
     @BeforeEach
     public void setUp() {
-        mockList = Arrays.asList(new TShirt(), new TShirt());
+        mockList = Arrays.asList(new TShirtDTO(), new TShirtDTO());
 //        tShirtRepository = Mockito.mock(TShirtRepository.class);
         //creates stub
         lenient().when(mocktShirtService.getAllTShirts()).thenReturn(mockList);
-        lenient().when(mocktShirtService.getTShirtsByAppUser(Mockito.anyInt())).thenReturn(mockList);
-        lenient().when(mocktShirtService.getTShirtsByAppUserUsername(Mockito.anyString())).thenReturn(mockList);
-        lenient().when(mocktShirtService.getTShirtsByAppUserEmail(Mockito.anyString())).thenReturn(mockList);
-        lenient().when(mocktShirtRepository.findAll()).thenReturn(mockList);
+        lenient().when(mocktShirtService.getTShirtsByAppUser(Mockito.anyInt())).thenReturn(oldmockList);
+        lenient().when(mocktShirtService.getTShirtsByAppUserUsername(Mockito.anyString())).thenReturn(oldmockList);
+        lenient().when(mocktShirtService.getTShirtsByAppUserEmail(Mockito.anyString())).thenReturn(oldmockList);
+        lenient().when(mocktShirtRepository.findAll()).thenReturn(oldmockList);
 //        when(spytShirtRepository.findAll()).thenReturn(mockList);
     }
 
     @Test
     public void testTShirtControllerGetAllTshirts() {
-        List<TShirt> result = tShirtController.getAllTshirts();
+        List<TShirtDTO> result = tShirtController.getAllTshirts();
         verify(mocktShirtService, times(1)).getAllTShirts();
 //        verify(mocktShirtRepository, times(1)).findAll();
 //        verify(spytShirtRepository, times(1)).findAll();
@@ -70,21 +72,21 @@ public class TShirtControllerTests {
     public void testTShirtControllerGetTShirtsByAppUser(){
         List<TShirt> result = tShirtController.getTShirtsByAppUser(1);
         verify(mocktShirtService,times(1)).getTShirtsByAppUser(1);
-        assertEquals(mockList, result);
+        assertEquals(oldmockList, result);
     }
 
     @Test
     public void testTShirtsByAppUserUsername(){
         List<TShirt> result = tShirtController.getTShirtsByAppUserName("test");
         verify(mocktShirtService,times(1)).getTShirtsByAppUserUsername(Mockito.anyString());
-        assertEquals(mockList, result);
+        assertEquals(oldmockList, result);
     }
 
     @Test
     public void testTshirtsByAppUserEmail(){
         List<TShirt> result = tShirtController.getTShirtsByAppUserEmail("test");
         verify(mocktShirtService,times(1)).getTShirtsByAppUserEmail(Mockito.anyString());
-        assertEquals(mockList, result);
+        assertEquals(oldmockList, result);
     }
 
 }

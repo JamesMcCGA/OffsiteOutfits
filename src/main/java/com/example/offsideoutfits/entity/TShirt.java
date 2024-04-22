@@ -8,9 +8,9 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 
 @Entity
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "tShirtId")
+//@JsonIdentityInfo(
+//        generator = ObjectIdGenerators.PropertyGenerator.class,
+//        property = "tShirtId")
 public class TShirt {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tshirt_seq")
@@ -19,8 +19,8 @@ public class TShirt {
 
 
     @ManyToOne
-    @JoinColumn(name = "appUserId", referencedColumnName = "appUserId")
-//    @JsonBackReference("tshirt-appUser")
+    @JoinColumn(name = "linkedAppUser", referencedColumnName = "appUserId")
+    @JsonBackReference("tshirt-appUser")
     private AppUser appUser;
     private String size;
     private Integer year;

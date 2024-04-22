@@ -1,6 +1,7 @@
 package com.example.offsideoutfits;
 
 
+import com.example.offsideoutfits.DTOs.TShirtDTO;
 import com.example.offsideoutfits.entity.TShirt;
 import com.example.offsideoutfits.repository.TShirtRepository;
 import com.example.offsideoutfits.service.impl.TShirtServiceImpl;
@@ -25,10 +26,10 @@ public class TShirtServiceTest2 {
 
     @Test
     public void testGetAllTshirts() {
-        List<TShirt> expectedTShirts = Arrays.asList(new TShirt(), new TShirt());
+        List<TShirtDTO> expectedTShirts = Arrays.asList(new TShirtDTO(), new TShirtDTO());
         when(tShirtService.getAllTShirts()).thenReturn(expectedTShirts);
 
-        List<TShirt> actualTShirts = tShirtService.getAllTShirts();
+        List<TShirtDTO> actualTShirts = tShirtService.getAllTShirts();
 
         // Assert
         verify(tShirtService, times(1)).getAllTShirts();

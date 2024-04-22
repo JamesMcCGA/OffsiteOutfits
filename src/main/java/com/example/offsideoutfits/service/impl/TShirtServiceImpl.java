@@ -1,5 +1,6 @@
 package com.example.offsideoutfits.service.impl;
 
+import com.example.offsideoutfits.DTOs.TShirtDTO;
 import com.example.offsideoutfits.entity.AppUser;
 import com.example.offsideoutfits.entity.TShirt;
 import com.example.offsideoutfits.repository.TShirtRepository;
@@ -9,17 +10,50 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TShirtServiceImpl implements TShirtService {
+
     @Autowired
     private TShirtRepository tShirtRepository;
 
     @Autowired
     private AppUserRepository appUserRepository;
+
+    private TShirtDTO convertToDTO(TShirt tShirt) {
+        TShirtDTO dto = new TShirtDTO();
+        dto.settShirtId(tShirt.gettShirtId());
+        dto.setSize(tShirt.getSize());
+        dto.setYear(tShirt.getYear());
+        dto.setPrice(tShirt.getPrice());
+        dto.setKit(tShirt.getKit());
+        dto.setNumber(tShirt.getNumber());
+        dto.setCondition(tShirt.getCondition());
+        // Set more properties
+
+        // Set AppUser information
+        if (tShirt.getAppUser() != null) {
+//            System.out.println("Has an associated app user !!!!!!!!!!!!!");
+            dto.setAppUserUsername(tShirt.getAppUser().getUsername());
+            dto.setAppUserId(tShirt.getAppUser().getAppUserId());
+            // Set other AppUser properties as needed
+        }
+
+        return dto;
+    }
+
+//    @Override
+//    public List<TShirt> getAllTShirts() {
+//        return tShirtRepository.findAll();
+//    }
+
     @Override
-    public List<TShirt> getAllTShirts() {
-        return tShirtRepository.findAll();
+    public List<TShirtDTO> getAllTShirts() {
+        List<TShirt> tShirts = tShirtRepository.findAll();
+        return tShirts.stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
     }
 
     public List<TShirt> getTShirtsByAppUser(Integer appUserId){

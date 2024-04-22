@@ -1,5 +1,6 @@
 package com.example.offsideoutfits.controller;
 
+import com.example.offsideoutfits.DTOs.TShirtDTO;
 import com.example.offsideoutfits.entity.TShirt;
 import com.example.offsideoutfits.repository.TShirtRepository;
 import com.example.offsideoutfits.service.TShirtService;
@@ -21,10 +22,15 @@ public class TShirtController {
         this.tShirtRepository = tShirtRepository;
         this.tShirtService = tShirtService;
     }
+//    @GetMapping("/TShirts")
+//    public List<TShirt> getAllTshirts() {
+//        List<TShirt> temp = tShirtService.getAllTShirts();
+//        return temp;
+//    }
     @GetMapping("/TShirts")
-    public List<TShirt> getAllTshirts() {
-        List<TShirt> temp = tShirtService.getAllTShirts();
-        return temp;
+    public List<TShirtDTO> getAllTshirts() {
+        // Call the service method and return DTOs
+        return tShirtService.getAllTShirts();
     }
 
     @GetMapping("/TShirts/{id}")
