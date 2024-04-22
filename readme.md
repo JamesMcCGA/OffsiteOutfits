@@ -106,6 +106,7 @@ Stub Brief Description (frontend)
 This test proves that when invoking the addToCart method with a specific T-shirt ID, it successfully adds that T-shirt to the cart if it isn't already present. It creates a situation where the tShirts.find method is stubbed to return the selected T-shirt, and the cart.some method is stubbed to return false to indicate that the T-shirt is not already in the cart. We also mock the alert function to mimicking its behavior. After invoking the addToCart function with the T-shirt ID, we check whether the T-shirt is indeed added to the cart array and that the expected alert message is executed.
 
 
+
 # Retrospective - Held on 18/04/2024
 ## Wind (What is helping us)
 - Ian’s new server hosting the database
@@ -118,11 +119,13 @@ This test proves that when invoking the addToCart method with a specific T-shirt
 ## Anchor (what is holding us back)
 - University WiFi firewall blocking access to the server
 - AWS server was expensive and slow, therefore switching to VPS server in Germany allowing complete control over database.
+
 - Avoidable merge conflicts caused by changing server and asynchronous communication
 - Lack of documentation to help other team members understand and use other peoples parts of the project. Work together as a group physically to share knowledge and understanding of the system as it is developed in real time
 
 ## Rocks (foreseeable risks and problems)
 - Achieving high test coverage by the deadline
+
 - Working with new technologies that us as developers have no experiences with
 - Implementing an effective search bar in the front end could take time to get working, which was part of MVP, therefore too ambitious
 - Ian doing too much work and we become over reliant on him. Relates to lack of documentation in anchor section, knowledge should be shared better.
@@ -133,4 +136,5 @@ This test proves that when invoking the addToCart method with a specific T-shirt
 - Stable and easily accessible server/database
 - Have each developer create their own tests for their own section, developers can help each other with testing.
 - By the end of the project we should feel like each developer has contributed an equal amount of time.
-- A good, seamless user experience on the frontend with a search bar
+- A good, seamless user experience on the frontend
+
